@@ -35,3 +35,19 @@ body{
   font-family: inter;
   cursor: pointer;
 }
+.questions-container{
+  padding: 40px 75px;
+}
+.container{}
+.question{
+  font-family: 'Karla';
+  font-weight: 700;
+  color: #293264;
+  /* font-size: 16px; */
+}
+.options{
+  
+}
+.line{
+  border: 0.794239px solid #DBDEF0;
+}

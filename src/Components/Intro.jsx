@@ -6,7 +6,7 @@ export default function Intro() {
     <div className='intro-page-container'>
         <h1 className='title-heading'>Quizzical</h1>
         <p className='description'>Test your skills here</p>
-        <Link to="/questions"><button className='btn'>Start Quiz</button></Link>
+        <Link to="/quiz"><button className='btn'>Start Quiz</button></Link>
     </div>
   )
 }
