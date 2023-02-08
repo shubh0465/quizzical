@@ -18,8 +18,6 @@ function App() {
       .then((res) => setQueData(res.data.results))
   }, [])
 
-  console.log(queData)
-
   return (
     <>
       <Router>
