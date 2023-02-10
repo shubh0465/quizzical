@@ -1,20 +1,12 @@
 import {React,useState} from 'react'
 
 export default function OptionBtn(props) {
-  const [style, setStyle] = useState(false)
-
   const styleButton = {
-    backgroundColor: style?"#D6DBF5":"",
-    border: style ? 0:""
-  }
-
-  function ButtonClickHandler(){
-    setStyle((oldState)=>{
-        return !oldState
-    })
+    backgroundColor: props.isSelected?"#D6DBF5":"",
+    border: props.isSelected ? 0:""
   }
 
   return (
-    <button className='option-btn' onClick={ButtonClickHandler} style={styleButton}>{props.option}</button>
+    <button className='option-btn' onClick={props.ButtonClickHandler} style={styleButton}>{props.option}</button>
   )
 }

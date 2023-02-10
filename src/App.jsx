@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { nanoid } from 'nanoid'
 import { useState, useEffect } from 'react'
 import {
 BrowserRouter as Router,
@@ -11,19 +12,12 @@ import AllQuestions from './Components/AllQuestions'
 import Intro from './Components/Intro'
 
 function App() {
-  const [queData, setQueData] = useState([])
-
-  useEffect(() => {
-    axios.get("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then((res) => setQueData(res.data.results))
-  }, [])
-
   return (
     <>
       <Router>
         <Routes>
           <Route  path="/" element={<Intro />}></Route>
-          <Route  path='/quiz' element={<AllQuestions queData={queData}/>}></Route>
+          <Route  path='/quiz' element={<AllQuestions/>}></Route>
         </Routes>
       </Router>
     </>
