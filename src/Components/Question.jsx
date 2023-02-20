@@ -34,7 +34,7 @@ export default function Question(props) {
         isSelected: id===item.id ? !item.isSelected : false
         }
       })
-    })
+    })  
   }
 
   const optionElement = selected.map((option)=>{
@@ -43,7 +43,7 @@ export default function Question(props) {
 
   return (
     <div className='container'>
-      <h4 className='question'>{props.question}</h4>
+      <h4 className='question' dangerouslySetInnerHTML={{ __html: props.question }} />
       <div className='options'>
         {optionElement}
       </div>
