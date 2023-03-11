@@ -63,6 +63,10 @@ body{
   font-weight: 400;
   cursor: pointer;
 }
+.selectedButton {
+  background-color: #4d5b9e;
+  color: #fff;
+}
 .line{
   border: 0.794239px solid #DBDEF0;
 }
