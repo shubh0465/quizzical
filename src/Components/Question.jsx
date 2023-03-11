@@ -1,49 +1,21 @@
 import { nanoid } from 'nanoid';
+import { useContext } from 'react';
 import {React,useEffect,useState} from 'react'
+import UserContext from '../Context/UserContext';
 import OptionBtn from './OptionBtn';
 
 export default function Question(props) {
-  const optionArray = props.optionArray
-
-  useEffect(()=>{
-    function shuffle(arr) {
-      for (var i = arr.length - 1; i >= 1; i -= 1) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      }
-    }
-    shuffle(optionArray)
-  },[])
-
-  const optionArraywithId = optionArray.map((option)=>{
-    return {
-      value: option,
-      id : nanoid(),
-      isSelected: false
-    }
-  })
   
-  const [selected, setSelected] = useState(optionArraywithId)
+  const {handleOptionClick,score}= useContext(UserContext)
 
-  function ButtonClickHandler(id){
-    setSelected((oldArray)=>{
-      return oldArray.map((item)=>{
-        return {...item,
-        isSelected: id===item.id ? !item.isSelected : false
-        }
-      })
-    })
-  }
-
-  const optionElement = selected.map((option)=>{
-    return <OptionBtn key={option.id} option={option.value} isSelected={option.isSelected} ButtonClickHandler={()=>ButtonClickHandler(option.id)}/>
+  const optionElement = props.options.map((option)=>{
+    return <OptionBtn key={option.optionId} value={option.value} isSelected={option.isSelected} correct_option={props.correct_option}
+    selected_option={props.selected_option} handleOptionClick={()=>handleOptionClick(props.quesId, option.optionId, option.value)}/>
   })
 
   return (
     <div className='container'>
-      <h4 className='question'>{props.question}</h4>
+      <h4 className='question' dangerouslySetInnerHTML={{ __html: "Q"+props.num+". "+props.question }} />
       <div className='options'>
         {optionElement}
       </div>

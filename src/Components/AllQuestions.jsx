@@ -1,27 +1,25 @@
-import {React,useState,useEffect} from 'react'
-import axios from 'axios'
+import { React, useState, useEffect, useContext } from 'react'
 import Question from './Question'
-import { nanoid } from 'nanoid'
+import UserContext from "../Context/UserContext"
+import Loader from './Loader';
+import Result from './Result';
 
 export default function AllQuestions() {
-
-  const [questionsData, setQuestionsData] = useState([])
+  const { start, isLoading, fetchData, questionsData, submit } = useContext(UserContext)
 
   useEffect(() => {
-      axios.get("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then((res) => setQuestionsData(res.data.results.map(item=>{
-        return {...item,id:nanoid()}
-      })))
-  }, [])
-
-  const questionElement =questionsData.map((item)=>{
-    return <Question key={item.id} question={item.question} optionArray={[...item.incorrect_answers,item.correct_answer]}/>
-  })
+    fetchData();
+  }, [start])
   
+  const questionElement = questionsData.map((item, index) => {
+    return <Question key={item.id} question={item.question} options={item.options} quesId={item.id} correct_option={item.correct_option} selected_option={item.selected_option} num={index + 1} />
+  })
+
   return (
-    <div className='questions-container'>
+    isLoading ? <Loader /> :
+      <div className='questions-container'>
         {questionElement}
-        <button>Check Answers</button>
-    </div>
+        <Result />
+      </div>
   )
 }
