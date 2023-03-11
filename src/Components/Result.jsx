@@ -1,15 +1,20 @@
 import React, { useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import UserContext from '../Context/UserContext'
 
 export default function Result() {
-  const submit = useContext(UserContext).submit;
-  const handleSubmit = useContext(UserContext).handleSubmit;;
+  const { handleSubmitClick, handleResetClick, submit, score } = useContext(UserContext);
 
   return (
-    <div>
-        {
-           <button className='btn' onClick={handleSubmit}>Check Answers</button>
-        }
+    <div className='result'>
+      {submit ? (
+        <span className="result-description">
+          You scored {score}/5 correct answers
+        </span>
+      ) : (
+        ""
+      )}
+      <button className='btn' onClick={!submit ? handleSubmitClick : () => { handleResetClick(); window.location.reload(true);}}>{!submit ? "Check Answers" : "Play Again"}</button>
     </div>
   )
 }

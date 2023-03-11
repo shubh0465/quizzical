@@ -11,7 +11,10 @@ export default function OptionBtn({
 }) {
   const {submit} = useContext(UserContext)
   return (
-    <button className={`option-btn ${isSelected && !submit ? "selectedButton" : ""}`}
+    <button className={`option-btn ${isSelected && !submit ? "selectedButton" : ""} 
+    ${submit && value === correct_option ? "correct-option":""}
+    ${submit && isSelected && value!==correct_option ? "incorrect-option":""}
+    `}
     onClick={!submit ? handleOptionClick : undefined} dangerouslySetInnerHTML={{ __html: value }}></button>
   )
 }

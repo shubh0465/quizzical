@@ -4,15 +4,10 @@ import { nanoid } from 'nanoid'
 import axios from 'axios'
 
 export default function UserState(props) {
-    const [start, setStart] = useState(false)
     const [questionsData, setQuestionsData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [submit, setSubmit] = useState(false)
     const [score, setScore] = useState(0)
-
-    const handleStart = () => {
-        setStart(!start)
-    }
 
     function getOptionsArray(arr) {
         const options = arr.map((option) => {
@@ -72,7 +67,7 @@ export default function UserState(props) {
                 }
                 return {
                     ...question,
-                    options: question.options.map((option) => ({
+                    option: question.options.map((option) => ({
                         ...option.options,
                         isSelected: "false",
                     })),
@@ -82,14 +77,13 @@ export default function UserState(props) {
     }
 
     function handleResetClick() {
-        setQuestions([]);
         setSubmit(false);
         setScore(0);
-        setStart(false);
+        setIsLoading(true)
     }
 
     return (
-        <UserContext.Provider value={{ start, handleStart, isLoading, fetchData, questionsData, handleOptionClick, submit, handleSubmitClick, handleResetClick }}>
+        <UserContext.Provider value={{isLoading, fetchData, questionsData, handleOptionClick, submit, handleSubmitClick, handleResetClick,score }}>
             {props.children}
         </UserContext.Provider>
     )

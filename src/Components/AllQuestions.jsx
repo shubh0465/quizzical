@@ -10,6 +10,7 @@ export default function AllQuestions() {
   useEffect(() => {
     fetchData();
   }, [start])
+  
   const questionElement = questionsData.map((item, index) => {
     return <Question key={item.id} question={item.question} options={item.options} quesId={item.id} correct_option={item.correct_option} selected_option={item.selected_option} num={index + 1} />
   })

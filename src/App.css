@@ -64,8 +64,7 @@ body{
   cursor: pointer;
 }
 .selectedButton {
-  background-color: #4d5b9e;
-  color: #fff;
+  background-color: #D6DBF5;
 }
 .line{
   border: 0.794239px solid #DBDEF0;
@@ -99,4 +98,22 @@ body{
   to {
     transform: rotate(2turn);
   }
+}
+.result{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.result-description{
+  color: #293264;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+}
+.correct-option{
+  background-color: #94D7A2;
+}
+.incorrect-option{
+  background-color: #F8BCBC;
 }
