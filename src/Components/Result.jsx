@@ -4,7 +4,7 @@ import UserContext from '../Context/UserContext'
 
 export default function Result() {
   const { handleSubmitClick, handleResetClick, submit, score } = useContext(UserContext);
-
+  const navigate = useNavigate()
   return (
     <div className='result'>
       {submit ? (
@@ -14,7 +14,7 @@ export default function Result() {
       ) : (
         ""
       )}
-      <button className='btn' onClick={!submit ? handleSubmitClick : () => { handleResetClick(); window.location.reload(true);}}>{!submit ? "Check Answers" : "Play Again"}</button>
+      <button className='btn' onClick={!submit ? handleSubmitClick : () => {navigate("/");}}>{!submit ? "Check Answers" : "Play Again"}</button>
     </div>
   )
 }
